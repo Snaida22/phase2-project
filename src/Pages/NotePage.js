@@ -40,6 +40,33 @@ function NotePage({history}) {
         body: JSON.stringify({...notes, 'updated': new Date()})
     })
     }
+
+    let deleteNote = async() => {
+        await fetch(`https://json-server1131.herokuapp.com/notes/${params.id}`, {
+          method: 'DELETE',
+      
+          headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(notes)
+      
+        })
+      
+      }
+      
+      let handleSubmit = () => {
+       if(params.id !=='new' && !notes.body){
+        deleteNote()
+        
+       }else if(params.id !=='new'){
+        updateNote()
+       }else if(params.id === 'new' && notes !== null & notes !==''){
+        createNote()
+       }
+       
+      
+      
+      }
     
 
 return (
