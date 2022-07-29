@@ -21,6 +21,27 @@ function NotePage({history}) {
       setNotes(data)
     }
 
+    let createNote = async() => {
+        await fetch(`https://json-server1131.herokuapp.com/notes/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({...notes, 'updated': new Date()})
+    })
+    }
+    
+    let updateNote = async() => {
+        await fetch(`https://json-server1131.herokuapp.com/notes/${params.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({...notes, 'updated': new Date()})
+    })
+    }
+    
+
 return (
     <div className='note'>
     <div className='note-header'>
